@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.env.windows": {
+        "PATH": "C:\\wamp64\\bin\\php\\php8.1.31;${env:PATH}",
+        "PHP_VERSION": "8.1.31"
+    },
+    "php.validate.executablePath": "C:\\wamp64\\bin\\php\\php8.1.31\\php.exe",
+    "terminal.integrated.environmentVariableCollections.replace": true
+
+}

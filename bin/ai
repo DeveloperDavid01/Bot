@@ -1,0 +1,45 @@
+<?php
+
+
+echo "Ask anything to AI:";
+$bot0_1 =
+ "/n
+   <-o->
+ ____|___
+|        |
+|  O   o |
+|   ___  |
+|________|
+
+/n
+Hola soy bot0.1, tu asistente de inteligencia artificial. Estoy aquí para ayudarte con cualquier pregunta o tarea que tengas.
+# Ten en cuenta que soy una versión básica en fase beta, así que mis respuestas pueden ser limitadas, haré lo mejor posible para asistirte.
+";
+
+echo $bot0_1 . PHP_EOL;
+
+function saludos() {
+    $greetings = ["Hola! ¿Cómo puedo ayudarte hoy?", "Hola, ¿en qué puedo ayudarte?", "¡Hola! ¿Qué necesitas?", "¡Hola! Como puedo asistirte hoy?"];
+    return $greetings[random_int(0, count($greetings) - 1)];
+}
+
+while (true) {
+    $input = readline(" > ");
+
+    echo "Thinking..." . PHP_EOL;
+    sleep(rand(1, 3));
+
+
+    echo "AI: " . $input . PHP_EOL;
+
+    if (strtolower($input) === "exit" || $input === " ") {
+        break;
+    }
+
+    if (strtolower($input) === "hola") {
+        echo "AI: " . saludos() . PHP_EOL;
+    }
+
+    
+   
+}
