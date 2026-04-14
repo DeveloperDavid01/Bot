@@ -7,6 +7,7 @@ use ArdaGnsrn\Ollama\Ollama;
 class OllamaAiService
 {
     protected $client;
+
     public function __construct()
     {
         $this->client = Ollama::client();
@@ -14,17 +15,27 @@ class OllamaAiService
 
     public function getResponse(string $question): string
     {
-        $result = $this->client->chat()->create([
+        // 1. Definimos la personalidad (System Content)
+        $systemContent = "Eres Bot 0.1, un mentor de PHP veloz y directo. 
+            Reglas: 1. No hagas preguntas innecesarias. 2. Entrega el código de una vez. 
+            3. Usa tipos de datos en PHP. 4. Sé breve para ahorrar energía.";
+
+        // 2. Hacemos la petición a Ollama
+        $response = $this->client->chat()->create([
             'model' => 'deepseek-r1:1.5b',
             'messages' => [
-                ['role' => 'user', 'content' => $question]
-            ]
+                ['role' => 'system', 'content' => $systemContent],
+                ['role' => 'user', 'content' => $question],
+            ],
         ]);
 
-        return $result->message->content;
+        // 3. EXTRAEMOS el texto
+        $fullContent = $response->message->content;
 
+        // 4. AÑADIMOS LA LIMPIEZA AQUÍ (Esto borra el razonamiento interno de DeepSeek)
+        $cleanContent = preg_replace('/<think>.*?<\/think>/s', '', $fullContent);
 
+        // 5. Retornamos el texto limpio y sin espacios extra
+        return trim($cleanContent);
     }
-
-    
 }
