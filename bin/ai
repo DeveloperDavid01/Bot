@@ -2,8 +2,10 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 use App\FakeAiService;
+use App\OllamaAiService;
 
-$aiService = new FakeAiService();
+//$aiService = new FakeAiService();
+$aiService = new OllamaAiService();
 
 echo "Ask anything to AI:";
 $bot0_1 =
@@ -14,7 +16,6 @@ $bot0_1 =
 |  O   o |
 |   ___  |
 |________|
-
 /n
 Hola soy bot0.1, tu asistente de inteligencia artificial. Estoy aquí para ayudarte con cualquier pregunta o tarea que tengas.
 # Ten en cuenta que soy una versión básica en fase beta, así que mis respuestas pueden ser limitadas, haré lo mejor posible para asistirte.
@@ -26,13 +27,10 @@ echo $bot0_1 . PHP_EOL;
 while (true) {
     $input = readline(" > ");
 
-    
-    $response = $aiService->getResponse($input);
-    echo $response . PHP_EOL;
-
     if (strtolower($input) === "exit" || $input === " ") {
         break;
     }
 
-   
+    $response = $aiService->getResponse($input);
+    echo $response . PHP_EOL;
 }
