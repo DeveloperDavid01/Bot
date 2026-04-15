@@ -33,7 +33,6 @@ class FakeAiService implements AIServiceInterface
             return "AI: Interesante... aunque mi especialidad es PHP. ¿Hablamos de código?";
         }
     }
-
     public function saludos(string $input): string
     {
         $greetings = [

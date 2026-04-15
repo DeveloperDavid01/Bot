@@ -1,14 +1,12 @@
 <?php
 
 namespace App;
-
 class Chat
 {
-
     public function __construct(
         private AIServiceInterface $aiService
     ){}
-
+    
     public function start()
     {
         $this->welcome();
@@ -18,13 +16,11 @@ class Chat
                 break;
             }
 
-            $response = $this->aiService->getResponse($input);
+            $response = $this->getResponse($input);
 
             $this->output($response);
-
         }
     } 
-
     private function welcome()
     {
         $bot0_1 =
@@ -43,19 +39,20 @@ class Chat
         echo "Ask anything to AI:";
         echo $bot0_1 . PHP_EOL;
     }
-
     private function prompt()
     {
         return readline("> ");
     }
-
     private function exit($input)
     {
         return trim($input) === "exit";
     }
-
     private function output($response)
     {
         echo $response . PHP_EOL;
+    }
+    public function getResponse($input)
+    {
+        return $this->aiService->getResponse($input);
     }
 }
