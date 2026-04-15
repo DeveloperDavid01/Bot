@@ -6,7 +6,7 @@ class Chat
 {
 
     public function __construct(
-        private OpenAIService|OllamaAiService|FakeAiService $aiService
+        private AIServiceInterface $aiService
     ){}
 
     public function start()
