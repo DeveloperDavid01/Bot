@@ -36,13 +36,9 @@ class OllamaAiService implements AIServiceInterface
             ],
         ]);
 
-        // 3. EXTRAEMOS el texto
-        $fullContent = $response->message->content;
+        
+        return  $response->message->content;
 
-        // 4. AÑADIMOS LA LIMPIEZA AQUÍ (Esto borra el razonamiento interno de DeepSeek)
-        $cleanContent = preg_replace('/<think>.*?<\/think>/s', '', $fullContent);
-
-        // 5. Retornamos el texto limpio y sin espacios extra
-        return trim($cleanContent);
+        
     }
 }
